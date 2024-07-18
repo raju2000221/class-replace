@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Class Replacer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 10px;
+    }
+    input, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+    .output {
+      border: 1px solid #ccc;
+      padding: 10px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>HTML Class Replacer</h1>
+    <label for="input">Input HTML:</label>
+    <textarea id="input"></textarea>
+    <button id="replace" onclick="replaceClasses()">Replace Classes</button>
+    <button id="copy" onclick="copyOutput()">Copy Output</button>
+    <label for="output">Output HTML:</label>
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    function replaceClasses() {
+      let input = document.getElementById('input').value;
+
+      // Replace classes as per the requirements
+      let output = input.replace(/py-5/g, 'common-sec')
+                        .replace(/py-3/g, 'common-sec')
+                        .replace(/area-padding-60/g, 'common-sec')
+                        .replace(/image-box/g, 'img-box')
+                        .replace(/check-square/g, 'theme-list')
+                        .replace(/light-bg/g, '');
+
+      document.getElementById('output').innerText = output;
+      document.getElementById("replace").innerText = "Replaced"
+      document.getElementById('input').value = null;
+    }
+    function copyOutput() {
+      let output = document.getElementById('output').innerText;
+      navigator.clipboard.writeText(output).then(() => {
+        document.getElementById("copy").innerText = "Copied"
+      }).catch(err => {
+        alert('Failed to copy: ', err);
+      });
+    }
+  </script>
+</body>
+</html>
